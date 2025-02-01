@@ -9,7 +9,7 @@ User Interface
             convert user input to String
                 handle any exceptions this may raise
             verify the input is between 0 and 5 inclusive
-                if so return 
+                if so return
 
 
 

@@ -17,13 +17,14 @@ public class Main {
             "4 - Delete file\n" +
             "5 - Mirror reflect file\n"
         );
-        System.out.print("Select option: ");
+        
         try{
-            input = Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException nfe){
-            System.out.println("Invalid data type, please enter only "
-            + "whole numbers");
-        }
+            do{
+                System.out.print("Select option: ");
+                input = Integer.parseInt(scanner.nextLine());
+            } while(input < 0 || input > 5);
+
+        } catch (NumberFormatException nfe){}
 
         return input;
     }
