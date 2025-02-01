@@ -1,0 +1,20 @@
+User Interface
+    Allow the user to select a number
+        print the number options
+        print a message directing the user to make a selection
+        use a scanner to recieve the user's input
+        print the number to ensure proper data capture
+
+
+
+
+
+
+
+
+
+
+
+
+
+File operations
