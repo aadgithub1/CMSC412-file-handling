@@ -11,6 +11,43 @@ User Interface
             verify the input is between 0 and 5 inclusive
                 if so return
 
+Model
+    Perform an operation based on user input
+    Create a place for the file path to be stored to verify validity: File file
+
+    if inp == 0
+        print exit message
+    if inp == 1
+        do path = getPath()
+        while(file == null) //or some other check for validity
+
+        TO-DO:
+        Decide whether to error check for null in loop in main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if inp == 2
+        print exit message
+    if inp == 3
+        print exit message
+    if inp == 4
+        print exit message
+    if inp == 5
+        print exit message
+
+
 
 
 

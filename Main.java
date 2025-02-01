@@ -1,10 +1,25 @@
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
+    public static Path path = null;
     public static void main(String[] args) {
         int userChoice = getUserChoice();
-        System.out.println("your choice was " + userChoice);
+        
+        if(userChoice == 0){
+            System.out.println("Thanks for using the application!");
+        } else if(userChoice == 1){
+            getFilePath();
+            System.out.println("the path is now " + path.toString());
+        }
+    }
+
+    public static void getFilePath(){
+        //enter do while loop here
+        System.out.print("Enter your file path: ");
+        path = Paths.get(scanner.nextLine());
     }
 
     public static int getUserChoice(){
