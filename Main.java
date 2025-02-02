@@ -28,7 +28,21 @@ public class Main {
         } else if(userChoice == 3){
             verifyValidPath();
             setCurrentFile();
-            System.out.println("the file is " + currentFile.getName());
+            printCurrentFileContents();
+        }
+    }
+
+    public static void printCurrentFileContents(){
+        try{
+            byte[] bytes = Files.readAllBytes(Paths.get(currentFile.getAbsolutePath()));
+            for(int i = 1; i <= bytes.length; i++){
+                System.out.printf("%02X ", bytes[i-1]);
+                if(i % 16 == 0){
+                    System.out.println();
+                }
+            }
+        } catch(IOException ioe){
+            System.out.println("whoops no bytes");
         }
     }
 
