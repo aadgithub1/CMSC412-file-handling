@@ -44,6 +44,15 @@ public class Main {
         currentFile.delete();
     }
 
+    public static void printByteArray(byte[] bytes){
+        for(int i = 1; i <= bytes.length; i++){
+            System.out.printf("%02X ", bytes[i-1]);
+            if(i % 16 == 0){
+                System.out.println();
+            }
+        }
+    }
+
     public static byte[] getCurrentFileBytes(){
         try{
             return Files.readAllBytes(Paths.get(currentFile.getAbsolutePath()));
@@ -61,22 +70,12 @@ public class Main {
             mirroredBytes[currentFileBytes.length - i] = currentFileBytes[i-1];
         }
 
-        for(int i = 1; i <= mirroredBytes.length; i++){
-            System.out.printf("%02X ", mirroredBytes[i-1]);
-            if(i % 16 == 0){
-                System.out.println();
-            }
-        }
+        printByteArray(mirroredBytes);
     }
 
     public static void printCurrentFileContents(){
         byte[] bytes = getCurrentFileBytes();
-        for(int i = 1; i <= bytes.length; i++){
-            System.out.printf("%02X ", bytes[i-1]);
-            if(i % 16 == 0){
-                System.out.println();
-            }
-        }
+        printByteArray(bytes);
     }
 
     public static void setCurrentFile(){
