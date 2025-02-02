@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -24,10 +25,32 @@ public class Main {
         } else if(userChoice == 2){
             verifyPath();
             try{
+                ArrayList<Path> directories = new ArrayList<>();
+                ArrayList<Path> files = new ArrayList<>();
                 //if the thing being walked is a file print size
-                Files.walk(path, 1).forEach(System.out::println);
+                Files.walk(path, 1).forEach(p -> {
+                    if(Files.isRegularFile(p)){
+                        files.add(p);
+                    } else{
+                        directories.add(p);
+                    }
+                    
+                });
+
+                System.out.println("The subdirectories in "
+                + directories.get(0) + " are:");
+
+                for(int i = 1; i < directories.size(); i++){
+                    System.out.println(directories.get(i));
+                }
+
+                System.out.println("\nThe files are");
+                for(Path file : files){
+                    System.out.println(file + ": " + Files.size(file) + " bytes");
+                }
+                
             } catch(IOException ioe){
-                ioe.printStackTrace();
+                System.out.println("There was an IO issue with the file walk.");
             }
         } else if(userChoice == 3){
             verifyPath();

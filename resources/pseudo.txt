@@ -26,9 +26,13 @@ Model
 
     if inp == 2
         make sure path exists
+        create arraylists for directories and files (separate)
         print hierarchy
             walk files
-            print each new file
+            if file is regular file
+                add to files arrlist
+            else add to directories arrlist
+            
     
     if inp == 3
         verify valid path is being used
