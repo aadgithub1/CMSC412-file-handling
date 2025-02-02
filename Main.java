@@ -33,6 +33,10 @@ public class Main {
             verifyPath();
             verifyCurrentFile();
             deleteCurrentFile();
+        } else if (userChoice == 5){
+            verifyPath();
+            verifyCurrentFile();
+            mirrorCurrentFileBytes();
         }
     }
 
@@ -47,6 +51,22 @@ public class Main {
             System.out.println("whoops no bytes!");
         }
         return new byte[1];
+    }
+
+    public static void mirrorCurrentFileBytes(){
+        byte[] currentFileBytes = getCurrentFileBytes();
+        byte[] mirroredBytes = new byte[currentFileBytes.length];
+
+        for(int i = currentFileBytes.length; i > 0; i--){
+            mirroredBytes[currentFileBytes.length - i] = currentFileBytes[i-1];
+        }
+
+        for(int i = 1; i <= mirroredBytes.length; i++){
+            System.out.printf("%02X ", mirroredBytes[i-1]);
+            if(i % 16 == 0){
+                System.out.println();
+            }
+        }
     }
 
     public static void printCurrentFileContents(){

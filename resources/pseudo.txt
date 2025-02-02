@@ -66,8 +66,17 @@ Model
         verify valid path is being used
         get file name
         if file exists in hierarchy
-            read contents into buffer
             mirror bytes
+
+            byte[] currentFileBytes = getCurrentFileBytes()
+            byte[] mirroredBytes = new byte[currentFileBytes]
+            
+            for i = currentFileBytes.length; i > 0; i--
+                mirroredBytes[currentFileBytes.length - i] = currentFileBytes[i-1]
+
+            overwrite the current file with the mirrored bytes
+
+
         else
             tell user file does not exist
             prompt again
