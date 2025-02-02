@@ -35,7 +35,7 @@ public class Main {
     public static void setCurrentFile(){
         System.out.println("Please enter the file name.");
         do{
-            currentFile = new File(scanner.nextLine());
+            currentFile = new File(path.toFile(), scanner.nextLine());
             if(currentFile == null || !currentFile.exists()){
                 System.out.println("File does not exist, please enter "
                 + "a valid file name.");

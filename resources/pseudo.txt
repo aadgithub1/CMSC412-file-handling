@@ -35,13 +35,14 @@ Model
     
     if inp == 3
         verify valid path is being used
+        set the path as the root/where we will look within
         get file name
             use scanner to get file name
             make sure file exists
             if so
                 assign the value to currentFile
 
-        if file exists in hierarchy
+        if file exists in the assigned path
             print contents of that file
         else
             tell user file does not exist
