@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,9 +20,11 @@ public class Main {
             verifyValidPath();
             try{
                 Files.walk(path).forEach(System.out::println);
-            } catch(Exception e){
-                e.printStackTrace();
+            } catch(IOException ioe){
+                ioe.printStackTrace();
             }
+        } else if(userChoice == 3){
+            
         }
     }
 

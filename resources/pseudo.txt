@@ -29,7 +29,38 @@ Model
             check if path exists
             if not
                 call get path
-        
+        print hierarchy
+            walk files
+            print each new file
+    
+    if inp == 3
+        verify valid path is being used
+        get file name
+        if file exists in hierarchy
+            print contents of that file
+        else
+            tell user file does not exist
+            prompt again
+
+    if inp == 4
+        verify valid path is being used
+        get file name
+        if file exists in hierarchy
+            delete that file
+        else
+            tell user file does not exist
+            prompt again
+    
+    if inp == 5
+        verify valid path is being used
+        get file name
+        if file exists in hierarchy
+            read contents into buffer
+            mirror bytes
+        else
+            tell user file does not exist
+            prompt again
+
 
 
 
