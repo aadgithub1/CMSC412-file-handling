@@ -1,3 +1,4 @@
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -11,8 +12,13 @@ public class Main {
         if(userChoice == 0){
             System.out.println("Thanks for using the application!");
         } else if(userChoice == 1){
-            getFilePath();
-            System.out.println("the path is now " + path.toString());
+            do{
+                getFilePath();
+                if(!Files.exists(path)){
+                    System.out.println("Path not found, please enter "
+                    + "a valid path.");
+                }
+            } while(!Files.exists(path));
         }
     }
 
