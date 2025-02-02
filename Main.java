@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,6 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
     public static Path path = null;
+    public static File currentFile = null;
     public static void main(String[] args) {
         int userChoice = getUserChoice();
         
@@ -15,7 +17,7 @@ public class Main {
         } else if(userChoice == 0){
             System.out.println("Thanks for using the application!");
         } else if(userChoice == 1){
-            getFilePath();
+            setPath();
         } else if(userChoice == 2){
             verifyValidPath();
             try{
@@ -24,21 +26,34 @@ public class Main {
                 ioe.printStackTrace();
             }
         } else if(userChoice == 3){
-            
+            verifyValidPath();
+            setCurrentFile();
+            System.out.println("the file is " + currentFile.getName());
         }
+    }
+
+    public static void setCurrentFile(){
+        System.out.println("Please enter the file name.");
+        do{
+            currentFile = new File(scanner.nextLine());
+            if(currentFile == null || !currentFile.exists()){
+                System.out.println("File does not exist, please enter "
+                + "a valid file name.");
+            }
+        } while(currentFile == null || !currentFile.exists());
     }
 
     public static void verifyValidPath(){
         if(path == null){
             System.out.println("You need a valid path to perform this "
             + "operation.");
-            getFilePath();
+            setPath();
         }
     }
 
-    public static void getFilePath(){
+    public static void setPath(){
         do{
-            System.out.print("Enter your file path: ");
+            System.out.print("Enter your directory path: ");
             path = Paths.get(scanner.nextLine());
             if(!Files.exists(path)){
                 System.out.println("Path not found, please enter "

@@ -36,6 +36,11 @@ Model
     if inp == 3
         verify valid path is being used
         get file name
+            use scanner to get file name
+            make sure file exists
+            if so
+                assign the value to currentFile
+
         if file exists in hierarchy
             print contents of that file
         else
