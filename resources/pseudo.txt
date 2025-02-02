@@ -26,9 +26,6 @@ Model
 
     if inp == 2
         make sure path exists
-            check if path exists
-            if not
-                call get path
         print hierarchy
             walk files
             print each new file

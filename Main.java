@@ -24,7 +24,8 @@ public class Main {
         } else if(userChoice == 2){
             verifyPath();
             try{
-                Files.walk(path).forEach(System.out::println);
+                //if the thing being walked is a file print size
+                Files.walk(path, 1).forEach(System.out::println);
             } catch(IOException ioe){
                 ioe.printStackTrace();
             }
@@ -41,6 +42,13 @@ public class Main {
             verifyCurrentFile();
             mirrorCurrentFileBytes();
             printCurrentFileContents();
+        }
+    }
+
+    public static void printWalkInfo(Path pathArg){
+        if(Files.isRegularFile(pathArg)){
+            //TO-DO
+            //make  function reference mthod for walking dir
         }
     }
 
