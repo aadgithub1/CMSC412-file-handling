@@ -40,17 +40,22 @@ public class Main {
         currentFile.delete();
     }
 
-    public static void printCurrentFileContents(){
+    public static byte[] getCurrentFileBytes(){
         try{
-            byte[] bytes = Files.readAllBytes(Paths.get(currentFile.getAbsolutePath()));
-            for(int i = 1; i <= bytes.length; i++){
-                System.out.printf("%02X ", bytes[i-1]);
-                if(i % 16 == 0){
-                    System.out.println();
-                }
-            }
+            return Files.readAllBytes(Paths.get(currentFile.getAbsolutePath()));
         } catch(IOException ioe){
-            System.out.println("whoops no bytes");
+            System.out.println("whoops no bytes!");
+        }
+        return new byte[1];
+    }
+
+    public static void printCurrentFileContents(){
+        byte[] bytes = getCurrentFileBytes();
+        for(int i = 1; i <= bytes.length; i++){
+            System.out.printf("%02X ", bytes[i-1]);
+            if(i % 16 == 0){
+                System.out.println();
+            }
         }
     }
 
