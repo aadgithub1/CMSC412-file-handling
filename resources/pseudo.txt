@@ -75,7 +75,10 @@ Model
                 mirroredBytes[currentFileBytes.length - i] = currentFileBytes[i-1]
 
             overwrite the current file with the mirrored bytes
-
+                create FileOutputStream = null
+                in the mirror method
+                    FileOutputStream byteOutputStream = new FileOutputStream(currentFile)
+                    byteOutputStream.write(mirrorCurrentFileBytes)
 
         else
             tell user file does not exist

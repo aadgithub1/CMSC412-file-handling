@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,6 +11,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
     public static Path path = null;
     public static File currentFile = null;
+    public static FileOutputStream byteOutputStream = null;
     public static void main(String[] args) {
         int userChoice = getUserChoice();
         
@@ -37,6 +40,7 @@ public class Main {
             verifyPath();
             verifyCurrentFile();
             mirrorCurrentFileBytes();
+            printCurrentFileContents();
         }
     }
 
@@ -70,12 +74,19 @@ public class Main {
             mirroredBytes[currentFileBytes.length - i] = currentFileBytes[i-1];
         }
 
-        printByteArray(mirroredBytes);
+        try{
+            byteOutputStream = new FileOutputStream(currentFile);
+            byteOutputStream.write(mirroredBytes);
+        } catch(FileNotFoundException fnfe){
+            System.out.println("File is not there.");
+        } catch(IOException ioe){
+            System.out.println("There was an IO problem.");
+        }
     }
 
     public static void printCurrentFileContents(){
-        byte[] bytes = getCurrentFileBytes();
-        printByteArray(bytes);
+        System.out.println("The current file contents are:");
+        printByteArray(getCurrentFileBytes());
     }
 
     public static void setCurrentFile(){
