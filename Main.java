@@ -19,17 +19,25 @@ public class Main {
         } else if(userChoice == 1){
             setPath();
         } else if(userChoice == 2){
-            verifyValidPath();
+            verifyPath();
             try{
                 Files.walk(path).forEach(System.out::println);
             } catch(IOException ioe){
                 ioe.printStackTrace();
             }
         } else if(userChoice == 3){
-            verifyValidPath();
+            verifyPath();
             setCurrentFile();
             printCurrentFileContents();
+        } else if(userChoice == 4){
+            verifyPath();
+            verifyCurrentFile();
+            deleteCurrentFile();
         }
+    }
+
+    public static void deleteCurrentFile(){
+        currentFile.delete();
     }
 
     public static void printCurrentFileContents(){
@@ -57,11 +65,11 @@ public class Main {
         } while(currentFile == null || !currentFile.exists());
     }
 
-    public static void verifyValidPath(){
-        if(path == null){
-            System.out.println("You need a valid path to perform this "
-            + "operation.");
-            setPath();
+    public static void verifyCurrentFile(){
+        if(currentFile == null || !currentFile.exists()){
+            System.out.println("You need a valid file to perform "
+            + "this operation.");
+            setCurrentFile();
         }
     }
 
@@ -74,6 +82,14 @@ public class Main {
                 + "a valid path.");
             }
         } while(!Files.exists(path));
+    }
+
+    public static void verifyPath(){
+        if(path == null){
+            System.out.println("You need a valid path to perform this "
+            + "operation.");
+            setPath();
+        }
     }
 
     public static int getUserChoice(){

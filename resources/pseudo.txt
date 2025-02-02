@@ -44,25 +44,11 @@ Model
 
         if file exists in the assigned path
             print contents of that file
-
-                read a line of the file
-                create int array the size of the line
-
-                for every index value from 0 to array length
-                    array[i] = (int) line.charAt(i)
-                
-                create String array size of the int array
-
-
-                for each index in String array
-                    array[i] = Integer.toHexString(int array[i])
-                
-
-                -------------------------------------------------
                 byte[] = Files.readAllBytes(currentFile)
-
-
-
+                for each byte
+                    printf with "%02X " hex format
+                    if index % 16 == 0
+                        println / newline
         else
             tell user file does not exist
             prompt again

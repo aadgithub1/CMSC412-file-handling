@@ -1,2 +1,5 @@
-i am in the second level.
-i am in folder level-1-3.
+here is some filler
+text again now that i know the delete method
+works i can make a couple of files
+in order to practice deleting
+and lorem ipsum delor
