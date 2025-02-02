@@ -9,23 +9,39 @@ public class Main {
     public static void main(String[] args) {
         int userChoice = getUserChoice();
         
-        if(userChoice == 0){
+        if(userChoice == -1){
+            System.out.println("Invalid input type, please restart.");
+        } else if(userChoice == 0){
             System.out.println("Thanks for using the application!");
         } else if(userChoice == 1){
-            do{
-                getFilePath();
-                if(!Files.exists(path)){
-                    System.out.println("Path not found, please enter "
-                    + "a valid path.");
-                }
-            } while(!Files.exists(path));
+            getFilePath();
+        } else if(userChoice == 2){
+            verifyValidPath();
+            try{
+                Files.walk(path).forEach(System.out::println);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void verifyValidPath(){
+        if(path == null){
+            System.out.println("You need a valid path to perform this "
+            + "operation.");
+            getFilePath();
         }
     }
 
     public static void getFilePath(){
-        //enter do while loop here
-        System.out.print("Enter your file path: ");
-        path = Paths.get(scanner.nextLine());
+        do{
+            System.out.print("Enter your file path: ");
+            path = Paths.get(scanner.nextLine());
+            if(!Files.exists(path)){
+                System.out.println("Path not found, please enter "
+                + "a valid path.");
+            }
+        } while(!Files.exists(path));
     }
 
     public static int getUserChoice(){

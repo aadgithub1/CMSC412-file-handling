@@ -24,6 +24,13 @@ Model
         TO-DO:
         Decide whether to error check for null in loop in main
 
+    if inp == 2
+        make sure path exists
+            check if path exists
+            if not
+                call get path
+        
+
 
 
 
