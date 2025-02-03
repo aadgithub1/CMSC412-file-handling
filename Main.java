@@ -12,7 +12,6 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
     public static Path path = null;
     public static File currentFile = null;
-    public static FileOutputStream byteOutputStream = null;
     public static void main(String[] args) {
         while(true){
             int userChoice = getUserChoice();
@@ -46,7 +45,7 @@ public class Main {
 
     public static void deleteCurrentFile(){
         currentFile.delete();
-        System.out.println("The file has been deleted.");
+        System.out.println(currentFile.getName() + " has been deleted.");
     }
 
     public static void printByteArray(byte[] bytes){
@@ -75,8 +74,7 @@ public class Main {
             mirroredBytes[currentFileBytes.length - i] = currentFileBytes[i-1];
         }
 
-        try{
-            byteOutputStream = new FileOutputStream(currentFile);
+        try(FileOutputStream byteOutputStream = new FileOutputStream(currentFile);){
             byteOutputStream.write(mirroredBytes);
         } catch(FileNotFoundException fnfe){
             System.out.println("File is not there.");
