@@ -14,57 +14,60 @@ public class Main {
     public static File currentFile = null;
     public static FileOutputStream byteOutputStream = null;
     public static void main(String[] args) {
-        int userChoice = getUserChoice();
-        
-        if(userChoice == -1){
-            System.out.println("Invalid input type, please restart.");
-        } else if(userChoice == 0){
-            System.out.println("Thanks for using the application!");
-        } else if(userChoice == 1){
-            setPath();
-        } else if(userChoice == 2){
-            verifyPath();
-            try{
-                ArrayList<Path> directories = new ArrayList<>();
-                ArrayList<Path> files = new ArrayList<>();
-                //if the thing being walked is a file print size
-                Files.walk(path, 1).forEach(p -> {
-                    if(Files.isRegularFile(p)){
-                        files.add(p);
-                    } else{
-                        directories.add(p);
+        while(true){
+            int userChoice = getUserChoice();
+            
+            if(userChoice == -1){
+                System.out.println("Invalid input type, please give valid input.");
+            } else if(userChoice == 0){
+                System.out.println("Thanks for using the application!");
+                break;
+            } else if(userChoice == 1){
+                setPath();
+            } else if(userChoice == 2){
+                verifyPath();
+                try{
+                    ArrayList<Path> directories = new ArrayList<>();
+                    ArrayList<Path> files = new ArrayList<>();
+                    //if the thing being walked is a file print size
+                    Files.walk(path, 1).forEach(p -> {
+                        if(Files.isRegularFile(p)){
+                            files.add(p);
+                        } else{
+                            directories.add(p);
+                        }
+                        
+                    });
+
+                    System.out.println("The subdirectories in "
+                    + directories.get(0) + " are:");
+
+                    for(int i = 1; i < directories.size(); i++){
+                        System.out.println(directories.get(i));
+                    }
+
+                    System.out.println("\nThe files are");
+                    for(Path file : files){
+                        System.out.println(file + ": " + Files.size(file) + " bytes");
                     }
                     
-                });
-
-                System.out.println("The subdirectories in "
-                + directories.get(0) + " are:");
-
-                for(int i = 1; i < directories.size(); i++){
-                    System.out.println(directories.get(i));
+                } catch(IOException ioe){
+                    System.out.println("There was an IO issue with the file walk.");
                 }
-
-                System.out.println("\nThe files are");
-                for(Path file : files){
-                    System.out.println(file + ": " + Files.size(file) + " bytes");
-                }
-                
-            } catch(IOException ioe){
-                System.out.println("There was an IO issue with the file walk.");
+            } else if(userChoice == 3){
+                verifyPath();
+                setCurrentFile();
+                printCurrentFileContents();
+            } else if(userChoice == 4){
+                verifyPath();
+                verifyCurrentFile();
+                deleteCurrentFile();
+            } else if (userChoice == 5){
+                verifyPath();
+                verifyCurrentFile();
+                mirrorCurrentFileBytes();
+                printCurrentFileContents();
             }
-        } else if(userChoice == 3){
-            verifyPath();
-            setCurrentFile();
-            printCurrentFileContents();
-        } else if(userChoice == 4){
-            verifyPath();
-            verifyCurrentFile();
-            deleteCurrentFile();
-        } else if (userChoice == 5){
-            verifyPath();
-            verifyCurrentFile();
-            mirrorCurrentFileBytes();
-            printCurrentFileContents();
         }
     }
 

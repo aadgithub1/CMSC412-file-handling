@@ -86,40 +86,14 @@ Model
             prompt again
 
 
+Make it an infinite loop menu from which the user can choose
+and continually re-assign files and directories
 
+what do we want?
+    user hits any number 2-5 and is told they have to put in a directory
+    user hits any number 3-5 and is told they need to put in a file
+    requested operation is carried out when both are assigned valid values
+    info is displayed
 
-
-
-
-
-
-
-
-
-
-
-
-
-    if inp == 2
-        print exit message
-    if inp == 3
-        print exit message
-    if inp == 4
-        print exit message
-    if inp == 5
-        print exit message
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-File operations
+    menu is displayed again
+    
