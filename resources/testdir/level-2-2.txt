@@ -1,6 +1,0 @@
-level 2 3
-here is some filler
-text again now that i know the delete method
-works i can make a couple of files
-in order to practice deleting
-and lorem ipsum delor

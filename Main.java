@@ -170,6 +170,10 @@ public class Main {
             do{
                 System.out.print("Select option: ");
                 input = Integer.parseInt(scanner.nextLine());
+                if(input < 0 || input > 5){
+                    System.out.println("Please only enter numbers " 
+                    + "from the list.");
+                }
             } while(input < 0 || input > 5);
 
         } catch (NumberFormatException nfe){}
