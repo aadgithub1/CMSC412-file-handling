@@ -18,7 +18,7 @@ public class Main {
             int userChoice = getUserChoice();
             
             if(userChoice == -1){
-                System.out.println("Invalid input type, please give valid input.");
+                System.out.println("Invalid input type, please try again.");
             } else if(userChoice == 0){
                 System.out.println("Thanks for using the application!");
                 break;
@@ -26,60 +26,27 @@ public class Main {
                 setPath();
             } else if(userChoice == 2){
                 verifyPath();
-                try{
-                    ArrayList<Path> directories = new ArrayList<>();
-                    ArrayList<Path> files = new ArrayList<>();
-                    //if the thing being walked is a file print size
-                    Files.walk(path, 1).forEach(p -> {
-                        if(Files.isRegularFile(p)){
-                            files.add(p);
-                        } else{
-                            directories.add(p);
-                        }
-                        
-                    });
-
-                    System.out.println("The subdirectories in "
-                    + directories.get(0) + " are:");
-
-                    for(int i = 1; i < directories.size(); i++){
-                        System.out.println(directories.get(i));
-                    }
-
-                    System.out.println("\nThe files are");
-                    for(Path file : files){
-                        System.out.println(file + ": " + Files.size(file) + " bytes");
-                    }
-                    
-                } catch(IOException ioe){
-                    System.out.println("There was an IO issue with the file walk.");
-                }
+                printCurrentDirContents();
             } else if(userChoice == 3){
                 verifyPath();
                 setCurrentFile();
                 printCurrentFileContents();
             } else if(userChoice == 4){
                 verifyPath();
-                verifyCurrentFile();
+                setCurrentFile();
                 deleteCurrentFile();
             } else if (userChoice == 5){
                 verifyPath();
-                verifyCurrentFile();
+                setCurrentFile();
                 mirrorCurrentFileBytes();
                 printCurrentFileContents();
             }
         }
     }
 
-    public static void printWalkInfo(Path pathArg){
-        if(Files.isRegularFile(pathArg)){
-            //TO-DO
-            //make  function reference mthod for walking dir
-        }
-    }
-
     public static void deleteCurrentFile(){
         currentFile.delete();
+        System.out.println("The file has been deleted.");
     }
 
     public static void printByteArray(byte[] bytes){
@@ -118,6 +85,37 @@ public class Main {
         }
     }
 
+    public static void printCurrentDirContents(){
+        try{
+            ArrayList<Path> directories = new ArrayList<>();
+            ArrayList<Path> files = new ArrayList<>();
+            //if the thing being walked is a file print size
+            Files.walk(path, 1).forEach(p -> {
+                if(Files.isRegularFile(p)){
+                    files.add(p);
+                } else{
+                    directories.add(p);
+                }
+                
+            });
+
+            System.out.println("\nThe subdirectories in "
+            + directories.get(0) + " are:");
+
+            for(int i = 1; i < directories.size(); i++){
+                System.out.println(directories.get(i));
+            }
+
+            System.out.println("\nThe files are");
+            for(Path file : files){
+                System.out.println(file + ": " + Files.size(file) + " bytes");
+            }
+            
+        } catch(IOException ioe){
+            System.out.println("There was an IO issue with the file walk.");
+        }
+    }
+
     public static void printCurrentFileContents(){
         System.out.println("The current file contents are:");
         printByteArray(getCurrentFileBytes());
@@ -132,14 +130,9 @@ public class Main {
                 + "a valid file name.");
             }
         } while(currentFile == null || !currentFile.exists());
-    }
 
-    public static void verifyCurrentFile(){
-        if(currentFile == null || !currentFile.exists()){
-            System.out.println("You need a valid file to perform "
-            + "this operation.");
-            setCurrentFile();
-        }
+        System.out.println("The current file has been set to "
+        + currentFile.getName());
     }
 
     public static void setPath(){
@@ -151,6 +144,8 @@ public class Main {
                 + "a valid path.");
             }
         } while(!Files.exists(path));
+
+        System.out.println("The path has been set to " + path.toString());
     }
 
     public static void verifyPath(){
@@ -164,6 +159,7 @@ public class Main {
     public static int getUserChoice(){
         int input = -1;
         System.out.print(
+            "\n" +
             "0 - Exit\n" +
             "1 - Select directory\n" +
             "2 - List directory content\n" +

@@ -96,4 +96,8 @@ what do we want?
     info is displayed
 
     menu is displayed again
-    
+    the user can perform another operation on the same file
+    or choose a new dir (option 1) 
+
+    does the above require a new file to be selected or will it be auto
+    because Files.exists(old/file/in/new/dir)
