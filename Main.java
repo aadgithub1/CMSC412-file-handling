@@ -71,8 +71,9 @@ public class Main {
         byte[] currentFileBytes = getCurrentFileBytes();
         byte[] mirroredBytes = new byte[currentFileBytes.length];
 
-        for(int i = currentFileBytes.length; i > 0; i--){
-            mirroredBytes[currentFileBytes.length - i] = currentFileBytes[i-1];
+        for(int i = 0; i < currentFileBytes.length; i++){
+            byte b = nibbleSwap(currentFileBytes[i]);
+            mirroredBytes[i] = b;
         }
 
         try(FileOutputStream byteOutputStream = new FileOutputStream(currentFile);){
@@ -82,6 +83,10 @@ public class Main {
         } catch(IOException ioe){
             System.out.println("There was an IO problem.");
         }
+    }
+
+    public static byte nibbleSwap(byte b){
+        return (byte)(((b & 0x0F) << 4) | ((b & 0xF0) >> 4));
     }
 
     public static void printCurrentDirContents(){
