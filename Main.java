@@ -67,6 +67,7 @@ public class Main {
     }
 
     public static void mirrorCurrentFileBytes(){
+        //FLIP EACH BIT IN PLACE, NOT REVERSE BYTES
         byte[] currentFileBytes = getCurrentFileBytes();
         byte[] mirroredBytes = new byte[currentFileBytes.length];
 
